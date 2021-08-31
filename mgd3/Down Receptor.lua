@@ -5,23 +5,18 @@
 local t = Def.ActorFrame {
 	Def.Sprite {
 		Texture=NOTESKIN:GetPath( '_down', 'Receptor Go' );
-		Frame0000=0;
-		Delay0000=0.13;
-		Frame0001=1;
-		Delay0001=0.13;
-		Frame0002=2;
-		Delay0002=0.13;
-		Frame0003=3;
-		Delay0003=0.13;
-		Frame0004=4;
-		Delay0004=0.13;
-		Frame0005=5;
-		Delay0005=0.13;
-		Frame0006=6;
-		Delay0006=0.13;
-		Frame0007=7;
-		Delay0007=0.4;
-		InitCommand=cmd(effectclock,"beat");
+		--Frames=Sprite.LinearFrames( 8, 1 );
+		Frames= {
+			{Frame= 0, Delay= 0.1},
+			{Frame= 1, Delay= 0.1},
+			{Frame= 2, Delay= 0.1},
+			{Frame= 3, Delay= 0.1},
+			{Frame= 4, Delay= 0.1},
+			{Frame= 5, Delay= 0.1},
+			{Frame= 6, Delay= 0.1},
+			{Frame= 7, Delay= 0.3},
+		};
+		InitCommand=function(self) self:effectclock("beat") end;
 		NoneCommand=NOTESKIN:GetMetricA("ReceptorArrow", "NoneCommand");
 		PressCommand=NOTESKIN:GetMetricA("ReceptorArrow", "PressCommand");
 		LiftCommand=NOTESKIN:GetMetricA("ReceptorArrow", "LiftCommand");
