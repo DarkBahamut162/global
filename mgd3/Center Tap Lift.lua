@@ -1,7 +1,7 @@
 local t = Def.Model {
-	Meshes=NOTESKIN:GetPath('_center','tap note meshes');
+	Meshes=NOTESKIN:GetPath('_center','meshes');
 	Materials=NOTESKIN:GetPath('_center','tap lift materials');
-	Bones=NOTESKIN:GetPath('_center','tap bones');
+	Bones=NOTESKIN:GetPath('','_bones');
 };
 
 return t;

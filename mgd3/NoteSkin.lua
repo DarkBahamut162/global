@@ -39,7 +39,6 @@ USWN.Rotate = {
 -- [3.] Element Redirects
 -- Define elements that need to be redirected
 USWN.ElementRedir = {
-	["Tap Fake"]			= "Tap Note",
 	["Hold Head Inactive"]	= "Tap Note",
 	["Roll Head Inactive"]	= "Tap Note",
 	["Roll Explosion"]		= "Hold Explosion",

@@ -4,7 +4,7 @@
 Frames: 30
 Frame: 1
 Meshes: 1
-"mgd3center" 0 0
+"Center" 0 0
 412
 0 1 1 -1 0.625 0.5 -1
 0 -1 1 -1 0.875 0.5 -1

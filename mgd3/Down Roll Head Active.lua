@@ -1,7 +1,7 @@
 local t = Def.Model {
-	Meshes=NOTESKIN:GetPath('_down','roll active meshes');
+	Meshes=NOTESKIN:GetPath('_single','meshes');
 	Materials=NOTESKIN:GetPath('_down','roll active materials');
-	Bones=NOTESKIN:GetPath('_down','tap bones');
+	Bones=NOTESKIN:GetPath('','_bones');
 };
 
 return t;
