@@ -17,3 +17,12 @@ What has been done by me so far:
 - Reset **...DrawingHoldBodyOffset...** in metrics to 0
 - Set ***WhenReverse** in metrics to 1
 - Fixed/Cleaned up some code
+
+## smx
+
+Originally by ?????
+
+What has been done by me so far:
+
+- Deleted unneeded stuff
+- Fixed/Cleaned up some code
