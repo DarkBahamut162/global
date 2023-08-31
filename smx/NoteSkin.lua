@@ -68,7 +68,7 @@ USWN.Load = function()
     if sElement == "Receptor" then
         t[#t+1] = Def.Sprite{
             Texture="_underglow",
-            InitCommand=function(self) self:rotationz(-USWN.Rotate[sButton]):diffusealpha(0):valign(0):y(-20) end,
+            InitCommand=function(self) self:rotationz(-USWN.Rotate[sButton]):zoomy(2):diffusealpha(0):valign(0) end,
             PressCommand=function(self) self:stoptweening():zoomx(1):diffusealpha(1):decelerate(0.2):zoomx(0.9) end,
             LiftCommand=function(self) self:stoptweening():decelerate(0.2):diffusealpha(0):zoomx(0.75) end
         }
