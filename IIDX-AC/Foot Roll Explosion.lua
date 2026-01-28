@@ -25,7 +25,7 @@ return Def.ActorFrame{
 		Delay0010=0.03,
 		Frame0011=11,
 		Delay0011=0.03,
-		HoldingOnCommand=function(self) self:blend('BlendMode_Add'):zoom(2.5) end
+		RollOnCommand=function(self) self:blend('BlendMode_Add'):zoom(2.5) end
 	},
 	Def.Sprite {
 		Texture="_Foot Hold Explosion 4x3",
@@ -53,7 +53,7 @@ return Def.ActorFrame{
 		Delay0010=0.03,
 		Frame0011=11,
 		Delay0011=0.03,
-		HoldingOnCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
-		HoldingOffCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end
+		RollOnCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
+		RollOffCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end
 	}
 }

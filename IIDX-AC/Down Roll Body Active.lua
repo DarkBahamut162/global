@@ -11,5 +11,5 @@ return Def.Sprite {
 	Delay0000=0.25,
 	Frame0001=1,
 	Delay0001=0.25,
-	HoldingOnCommand=function(self) self:blend('BlendMode_Add') end
+	RollOnCommand=function(self) self:blend('BlendMode_Add') end
 }
