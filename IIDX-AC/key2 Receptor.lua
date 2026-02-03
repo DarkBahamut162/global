@@ -22,7 +22,7 @@ return Def.ActorFrame{
 	},
 	Def.Sprite {
 		Texture="beam/"..beam.."/"..length.."/".."Tap2",
-		OnCommand=function(self) self:basezoomx(0.75) end,
+		OnCommand=function(self) self:basezoomx(2/3) end,
 		Frame0000=0,
 		Delay0000=1,
 		InitCommand=function(self) self:y(4):finishtweening():blend('BlendMode_Add'):vertalign(bottom):diffusealpha(0) end,
