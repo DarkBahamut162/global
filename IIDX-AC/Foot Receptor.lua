@@ -47,5 +47,5 @@ return Def.ActorFrame{
 		PressCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(1) end,
 		LiftCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(0) end
 	},
-	LoadActor("_bomb") .. { InitCommand=function(self) self:draworder(9999) end }
+	loadfile(NOTESKIN:GetPath("","_bomb"))()..{ InitCommand=function(self) self:draworder(9999) end }
 }

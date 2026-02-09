@@ -5,4 +5,4 @@ if turntable == "random" then
 	turntable = turntables[rng%(#turntables)+1]
 end
 
-return Def.ActorFrame{ LoadActor("turntable/"..turntable) }
+return Def.ActorFrame{ loadfile(NOTESKIN:GetPath("","turntable/"..turntable))() }

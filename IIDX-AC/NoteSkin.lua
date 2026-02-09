@@ -1,14 +1,14 @@
 local USWN = {}
 USWN.ButtonRedir = {
-	["DownLeft"] = "Left",
-	["Left"] = "Left",
-	["Down"] = "Down",
-	["UpLeft"] = "Down",
-	["Center"] = "Left",
-	["Up"] = "Down",
-	["UpRight"] = "Down",
-	["Right"] = "Left",
-	["DownRight"] = "Left",
+	["DownLeft"] = "CenterWhite",
+	["Left"] = IsGame("smx") and "CenterWhite" or "Left",
+	["Down"] = IsGame("smx") and "CenterBlack" or "Down",
+	["UpLeft"] = "CenterBlack",
+	["Center"] = "CenterWhite",
+	["Up"] = IsGame("smx") and "CenterBlack" or "Left",
+	["UpRight"] = "CenterBlack",
+	["Right"] = IsGame("smx") and "CenterWhite" or "Down",
+	["DownRight"] = "CenterWhite",
 	["Key1"] = "Key1",
 	["Key2"] = "Key2",
 	["Key3"] = "Key1",
@@ -68,9 +68,12 @@ function USWN.Load()
 	--if (not string.find(sElement, "Head") and not string.find(sElement,"Explosion")) and (string.find(sElement,"Hold") or string.find(sElement,"Roll")) then Button = sButton end
 	--if string.find(Element, "Tap Mine") then Button = "Down" end
 
-	local t = LoadActor(NOTESKIN:GetPath(Button,Element))
+	local path = NOTESKIN:GetPath(Button,Element)
+	local typ = path:sub(-3):lower()
+	local t
 
-	if USWN.Blank[sElement] then if Var "SpriteOnly" then t = LoadActor(NOTESKIN:GetPath("","_blank")) else t = Def.Actor{} end end
+	if typ == "png" then t = Def.Sprite { Texture = path } elseif typ == "lua" then t = loadfile(path)() end
+	if USWN.Blank[sElement] then if Var "SpriteOnly" then t = Def.Sprite { Texture = NOTESKIN:GetPath("","_blank") } else t = Def.Actor{} end end
 	if USWN.PartsToRotate[sElement] then t.BaseRotationZ = USWN.Rotate[sButton] or 0 end
 	if sElement == "Explosion" then t.BaseRotationZ = nil end
 

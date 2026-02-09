@@ -48,6 +48,6 @@ return Def.ActorFrame{
 		NoneCommand=function() end,
 		OnCommand=function(self) self:vertalign(top):y(10) end
 	},
-	LoadActor("_turntable")..{ InitCommand=function(self) self:y(-16) end },
-	LoadActor("_bomb") .. { InitCommand=function(self) self:draworder(9999) end }
+	loadfile(NOTESKIN:GetPath("","_turntable"))()..{ InitCommand=function(self) self:y(-16) end },
+	loadfile(NOTESKIN:GetPath("","_bomb"))()..{ InitCommand=function(self) self:draworder(9999) end }
 }

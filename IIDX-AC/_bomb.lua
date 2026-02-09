@@ -7,11 +7,11 @@ if explosion == "random" then
 end
 
 return Def.ActorFrame{
-	LoadActor("explosion/"..explosion)..{
+	loadfile(NOTESKIN:GetPath("","explosion/"..explosion))()..{
 		InitCommand=function(self) self:diffusealpha(0) end,
 		NoneCommand=function(self) self:diffusealpha(0) end,
 		PressCommand=function(self) self:diffusealpha(0) end,
-		W5Command=function(self) self:diffusealpha(0) end,
+		W5Command=function(self) self:stoptweening():zoom(2.07):blend('BlendMode_Add'):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
 		W4Command=function(self) self:stoptweening():zoom(2.07):blend('BlendMode_Add'):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
 		W3Command=function(self) self:stoptweening():zoom(2.07):blend('BlendMode_Add'):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
 		W2Command=function(self) self:stoptweening():zoom(2.07):blend('BlendMode_Add'):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
