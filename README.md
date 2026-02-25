@@ -4,7 +4,19 @@ I managed to convert the following NoteSkins from SM5+ into global NoteSkins for
 
 ---
 
-## USWmgd3defaultSM5+ <sup><sub>(MGD3)</sub></sup>
+## iidx-AC
+
+Originally by Konmai
+
+- All Notes
+- All Beams (except for lightning)
+- All Bombs
+- All Turntables
+- Added support for popn/po-mu
+- Added support for dance/groove/pump/smx/techno
+    - Some adjustments might still be needed
+
+## mgd3 <sup><sub>(USWmgd3defaultSM5+)</sub></sup>
 
 Originally by [Jousway](https://github.com/Jousway)
 
