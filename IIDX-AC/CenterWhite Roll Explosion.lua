@@ -1,3 +1,8 @@
+local player = Var "Player"
+local mods = string.find(GAMESTATE:GetPlayerState(player):GetPlayerOptionsString("ModsLevel_Song"),"FlipUpsideDown")
+local reverse = GAMESTATE:GetPlayerState(player):GetPlayerOptions('ModsLevel_Song'):UsingReverse()
+if mods then reverse = not reverse end
+
 return Def.ActorFrame{
 	Def.Sprite {
 		Texture="_Key Hold Explosion 4x3.png",
@@ -25,7 +30,7 @@ return Def.ActorFrame{
 		Delay0010=0.03,
 		Frame0011=11,
 		Delay0011=0.03,
-		RollOnCommand=function(self) self:blend('BlendMode_Add'):zoom(2.5) end
+		RollOnCommand=function(self) self:blend('BlendMode_Add'):zoom(2.5):zoomy(reverse and -2.5 or 2.5) end
 	},
 	Def.Sprite {
 		Texture="_Key Lift 13x1.png",
@@ -55,7 +60,7 @@ return Def.ActorFrame{
 		Delay0011=0.03,
 		Frame0012=12,
 		Delay0012=0.03,
-		RollOnCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
-		RollOffCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end
+		RollOnCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):zoomy(reverse and -2.07 or 2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end,
+		RollOffCommand=function(self) self:stoptweening():blend('BlendMode_Add'):zoom(2.07):zoomy(reverse and -2.07 or 2.07):loop(0):diffusealpha(1):setstate(0):sleep(self:GetAnimationLengthSeconds()):diffusealpha(0) end
 	}
 }

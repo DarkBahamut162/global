@@ -1,3 +1,4 @@
+local reverse = ...
 local turntable = getenv("IIDXTurntable"..pname(Var "Player")) or "_default"
 if turntable == "random" then
 	local rng = GAMESTATE:GetStageSeed()
@@ -5,4 +6,4 @@ if turntable == "random" then
 	turntable = turntables[rng%(#turntables)+1]
 end
 
-return Def.ActorFrame{ loadfile(NOTESKIN:GetPath("","turntable/"..turntable))() }
+return Def.ActorFrame{ loadfile(NOTESKIN:GetPath("","turntable/"..turntable))(reverse) }
