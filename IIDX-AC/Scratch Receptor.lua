@@ -20,6 +20,13 @@ local mods = string.find(GAMESTATE:GetPlayerState(player):GetPlayerOptionsString
 local reverse = GAMESTATE:GetPlayerState(player):GetPlayerOptions('ModsLevel_Song'):UsingReverse()
 if mods then reverse = not reverse end
 
+local versionSplit = tonumber(split("-",ProductVersion())[1]:sub(1,3)) >= 0.5
+if not versionSplit then
+	local productCheck = ProductFamily() == "OutFox" or (isStepMania() and tonumber(split("-",ProductVersion())[1]) == 5.3)
+	local versionCheck = tonumber(VersionDate()) >= 20201100
+	if productCheck and versionCheck then reverse = not reverse end
+end
+
 return Def.ActorFrame{
 	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(31):diffuse(color("#3B3B3B")) end },
 	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-31):diffuse(color("#3B3B3B")) end },
