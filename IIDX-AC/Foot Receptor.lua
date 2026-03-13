@@ -1,4 +1,5 @@
 local beam = getenv("IIDXBeam"..pname(Var "Player")) or "default"
+local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1.0
 if beam == "random" then
 	local rng = GAMESTATE:GetStageSeed()
 	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush" }
@@ -36,10 +37,10 @@ return Def.ActorFrame{
 		OnCommand=function(self) self:basezoomx(0.43) end,
 		Frame0000=0,
 		Delay0000=1,
-		InitCommand=function(self) self:y(reverse and 4 or -4):finishtweening():blend('BlendMode_Add'):vertalign(reverse and bottom or top):diffusealpha(0) end,
-		PressCommand=function(self) self:finishtweening():zoom(0):blend('BlendMode_Add'):diffusealpha(.35):decelerate(.05):zoom(reverse and 1 or -1):diffusealpha(1) end,
+		InitCommand=function(self) self:y(reverse and 4 or -4):stoptweening():blend('BlendMode_Add'):vertalign(reverse and bottom or top):diffusealpha(0) end,
+		PressCommand=function(self) self:stoptweening():zoom(0):blend('BlendMode_Add'):diffusealpha(.35*brightness):decelerate(.05):zoom(reverse and 1 or -1):diffusealpha(brightness) end,
 		LiftCommand=function(self) self:decelerate(.2):diffusealpha(0):zoomx(0):zoomy(reverse and 1.5 or -1.5) end,
-		NoneCommand=function(self) self:finishtweening():diffusealpha(0) end
+		NoneCommand=function(self) self:stoptweening():diffusealpha(0) end
 	},
 	Def.Sprite {
 		Texture="Foot _ReceptorGlyph",
@@ -55,7 +56,7 @@ return Def.ActorFrame{
 		Delay0000=1,
 		InitCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(0) end,
 		NoneCommand=function() end,
-		PressCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(1) end,
+		PressCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(brightness) end,
 		LiftCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(0) end
 	},
 	loadfile(NOTESKIN:GetPath("","_bomb"))()..{ InitCommand=function(self) self:draworder(9999) end }

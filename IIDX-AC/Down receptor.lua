@@ -1,4 +1,5 @@
 local beam = getenv("IIDXBeam"..pname(Var "Player")) or "default"
+local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1.0
 if beam == "random" then
 	local rng = GAMESTATE:GetStageSeed()
 	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush" }
@@ -11,7 +12,7 @@ if length == "random" then
 	length = lengths[rng%(#lengths)+1]
 end
 local player = Var "Player"
-local mods = string.find(GAMESTATE:GetPlayerState(player):GetPlayerOptionsString("ModsLevel_Song"),"FlipUpsideDown")
+local mods = true
 local reverse = GAMESTATE:GetPlayerState(player):GetPlayerOptions('ModsLevel_Song'):UsingReverse()
 if mods then reverse = not reverse end
 
@@ -33,10 +34,10 @@ return Def.ActorFrame{
 		OnCommand=function(self) self:basezoomx(1.52):rotationz(180) end,
 		Frame0000=0,
 		Delay0000=1,
-		InitCommand=function(self) self:y(reverse and 4 or -4):finishtweening():blend('BlendMode_Add'):vertalign(bottom):diffusealpha(0) end,
-		PressCommand=function(self) self:finishtweening():zoom(0):blend('BlendMode_Add'):diffusealpha(.35):decelerate(.05):zoom(reverse and 1 or -1):diffusealpha(1) end,
+		InitCommand=function(self) self:y(reverse and 4 or -4):stoptweening():blend('BlendMode_Add'):vertalign(bottom):diffusealpha(0) end,
+		PressCommand=function(self) self:stoptweening():zoom(0):blend('BlendMode_Add'):diffusealpha(.35*brightness):decelerate(.05):zoom(reverse and 1 or -1):diffusealpha(brightness) end,
 		LiftCommand=function(self) self:decelerate(.2):diffusealpha(0):zoomx(0):zoomy(reverse and 1.5 or -1.5) end,
-		NoneCommand=function(self) self:finishtweening():diffusealpha(0) end
+		NoneCommand=function(self) self:stoptweening():diffusealpha(0) end
 	},
 	Def.Sprite {
 		Texture="_Down Receptor",
@@ -52,7 +53,7 @@ return Def.ActorFrame{
 		Delay0000=1,
 		InitCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(0) end,
 		NoneCommand=function() end,
-		PressCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(1) end,
+		PressCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(brightness) end,
 		LiftCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(0) end,
 		OnCommand=function(self) self:vertalign(reverse and top or bottom):y(reverse and -5 or 5):rotationz(180):zoom(1.28) end
 	},
