@@ -24,14 +24,19 @@ if not versionSplit then
 end
 
 return Def.ActorFrame{
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(18):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-18):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,
 		Delay0000=1,
 		InitCommand=function(self) self:zoom(reverse and 1 or -1):addy(reverse and -20 or 20):effectclock("beat"):zoomtowidth(34):blend('BlendMode_Add'):diffuseramp():effectcolor1(color("1,1,1,.2")):effectcolor2(color("1,1,1,1")) end
 	},
+	Def.Sprite {
+		Condition=IsGame("po-mu") or IsGame("popn"),
+		Texture="RED_LINE",
+		InitCommand=function(self) self:draworder(-9999):zoomtowidth(36) end
+	},
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(18):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-18):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="beam/"..beam.."/"..length.."/".."Tap1",
 		OnCommand=function(self) self:basezoomx(0.63) end,

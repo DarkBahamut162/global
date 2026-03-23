@@ -29,14 +29,14 @@ if not versionSplit then
 end
 
 return Def.ActorFrame{
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(31):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-31):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,
 		Delay0000=1,
 		InitCommand=function(self) self:zoom(reverse and 1 or -1):addx(((num_columns == 8 or num_columns == 16) and player == PLAYER_1) and 2 or not (num_columns == 8 or num_columns == 16) and -2 or 0):addy(reverse and -20 or 20):effectclock("beat"):zoomtowidth(64):blend('BlendMode_Add'):diffuseramp():effectcolor1(color("1,1,1,.2")):effectcolor2(color("1,1,1,1")) end
 	},
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(32):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-32):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="RED_LINE",
 		InitCommand=function(self) self:draworder(-9999):horizalign(((num_columns == 8 or num_columns == 16) and player == PLAYER_1) and left or right):x(((num_columns == 8 or num_columns == 16) and player == PLAYER_1) and -30.5 or (num_columns == 6 or num_columns == 12) and 30.5 or 32.5):zoomtowidth(width) end
