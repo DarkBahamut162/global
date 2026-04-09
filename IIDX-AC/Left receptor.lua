@@ -17,6 +17,7 @@ local reverse = GAMESTATE:GetPlayerState(player):GetPlayerOptions('ModsLevel_Son
 if mods then reverse = not reverse end
 
 return Def.ActorFrame{
+	--Def.Quad { OnCommand=function(self) self:zoomto(62,9999):vertalign(reverse and bottom or top):diffuse(color("#FFFFFF")):diffusealpha(0.5) end },
 	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(32):diffuse(color("#3B3B3B")) end },
 	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-32):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
@@ -36,7 +37,7 @@ return Def.ActorFrame{
 		Delay0000=1,
 		InitCommand=function(self) self:y(reverse and 4 or -4):stoptweening():blend('BlendMode_Add'):vertalign(reverse and bottom or top):diffusealpha(0) end,
 		PressCommand=function(self) self:stoptweening():zoom(0):blend('BlendMode_Add'):diffusealpha(.35*brightness):decelerate(.05):zoom(reverse and 1 or -1):diffusealpha(brightness) end,
-		LiftCommand=function(self) self:decelerate(.2):diffusealpha(0):zoomx(0):zoomy(reverse and 1.5 or -1.5) end,
+		LiftCommand=function(self) self:decelerate(.2):diffusealpha(0):zoomx(0):zoomy(reverse and 1 or -1) end,
 		NoneCommand=function(self) self:stoptweening():diffusealpha(0) end
 	},
 	Def.Sprite {

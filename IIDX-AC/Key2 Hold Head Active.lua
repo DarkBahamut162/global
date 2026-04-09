@@ -13,5 +13,5 @@ end
 
 return Def.Sprite {
 	Texture="notes/"..note.."/"..length.."/hold/notes_cn_black_end.png",
-	InitCommand=function(self) self:basezoom(0.75) end
+	InitCommand=function(self) self:basezoomx(0.62) end
 }

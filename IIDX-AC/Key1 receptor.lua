@@ -24,6 +24,7 @@ if not versionSplit then
 end
 
 return Def.ActorFrame{
+	--Def.Quad { OnCommand=function(self) self:zoomto(34,9999):vertalign(reverse and bottom or top):diffuse(color("#FFFFFF")):diffusealpha(0.5) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,
@@ -33,10 +34,10 @@ return Def.ActorFrame{
 	Def.Sprite {
 		Condition=IsGame("po-mu") or IsGame("popn"),
 		Texture="RED_LINE",
-		InitCommand=function(self) self:draworder(-9999):zoomtowidth(36) end
+		InitCommand=function(self) self:zoomtowidth(36) end
 	},
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(18):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-18):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(18):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-18):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="beam/"..beam.."/"..length.."/".."Tap1",
 		OnCommand=function(self) self:basezoomx(0.63) end,

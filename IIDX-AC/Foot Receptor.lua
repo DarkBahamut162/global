@@ -24,8 +24,9 @@ if not versionSplit then
 end
 
 return Def.ActorFrame{
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(21):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-21):diffuse(color("#3B3B3B")) end },
+	--Def.Quad { OnCommand=function(self) self:zoomto(40,9999):vertalign(reverse and bottom or top):diffuse(color("#00FF00")):diffusealpha(0.5) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(21):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-21):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,

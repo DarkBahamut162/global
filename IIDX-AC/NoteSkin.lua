@@ -1,13 +1,13 @@
 local USWN = {}
 USWN.ButtonRedir = {
 	["DownLeft"] = "CenterWhite",
-	["Left"] = IsGame("smx") and "CenterWhite" or "Left",
+	["Left"] = IsGame("smx") and "SMX" or "Left",
 	["Down"] = IsGame("smx") and "CenterBlack" or "Down",
 	["UpLeft"] = "CenterBlack",
-	["Center"] = "CenterWhite",
+	["Center"] = IsGame("smx") and "Center" or "CenterWhite",
 	["Up"] = IsGame("smx") and "CenterBlack" or "Left",
 	["UpRight"] = "CenterBlack",
-	["Right"] = IsGame("smx") and "CenterWhite" or "Down",
+	["Right"] = IsGame("smx") and "SMX" or "Down",
 	["DownRight"] = "CenterWhite",
 	["Key1"] = "Key1",
 	["Key2"] = "Key2",
