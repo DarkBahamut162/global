@@ -1,5 +1,6 @@
+local background = getenv("IIDXNoteBackgroundBrightness"..pname(Var "Player")) or 0
 local beam = getenv("IIDXBeam"..pname(Var "Player")) or "default"
-local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1.0
+local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1
 if beam == "random" then
 	local rng = GAMESTATE:GetStageSeed()
 	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush" }
@@ -24,7 +25,9 @@ if not versionSplit then
 end
 
 return Def.ActorFrame{
-	--Def.Quad { OnCommand=function(self) self:zoomto(26,9999):vertalign(reverse and bottom or top):diffuse(color("#808080")):diffusealpha(0.5) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(26,9999):vertalign(reverse and bottom or top):diffuse(color("#808080")):diffusealpha(background) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(14):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-14):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,
@@ -32,12 +35,9 @@ return Def.ActorFrame{
 		InitCommand=function(self) self:zoom(reverse and 1 or -1):addy(reverse and -20 or 20):effectclock("beat"):zoomtowidth(34):blend('BlendMode_Add'):diffuseramp():effectcolor1(color("1,1,1,.2")):effectcolor2(color("1,1,1,1")) end
 	},
 	Def.Sprite {
-		Condition=IsGame("po-mu") or IsGame("popn"),
 		Texture="RED_LINE",
 		InitCommand=function(self) self:zoomtowidth(28) end
 	},
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(14):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-14):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="beam/"..beam.."/"..length.."/".."Tap2",
 		OnCommand=function(self) self:basezoomx(0.62) end,

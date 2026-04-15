@@ -1,5 +1,6 @@
+local background = getenv("IIDXNoteBackgroundBrightness"..pname(Var "Player")) or 0
 local beam = getenv("IIDXBeam"..pname(Var "Player")) or "default"
-local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1.0
+local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1
 if beam == "random" then
 	local rng = GAMESTATE:GetStageSeed()
 	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush" }
@@ -17,9 +18,9 @@ local reverse = GAMESTATE:GetPlayerState(player):GetPlayerOptions('ModsLevel_Son
 if mods then reverse = not reverse end
 
 return Def.ActorFrame{
-	--Def.Quad { OnCommand=function(self) self:zoomto(56,9999):vertalign(reverse and bottom or top):diffuse(color("#FFFFFF")):diffusealpha(0.5) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(28):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-28):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(56,9999):vertalign(reverse and bottom or top):diffuse(color("#FFFFFF")):diffusealpha(background) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(28):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-28):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,
@@ -28,7 +29,7 @@ return Def.ActorFrame{
 	},
 	Def.Sprite {
 		Texture="RED_LINE",
-		InitCommand=function(self) self:draworder(-9999):zoomtowidth(56) end
+		InitCommand=function(self) self:zoomtowidth(56) end
 	},
 	Def.Sprite {
 		Texture="beam/"..beam.."/"..length.."/".."Tap1",
@@ -46,7 +47,7 @@ return Def.ActorFrame{
 		Delay0000=1,
 		InitCommand=function() end,
 		NoneCommand=function() end,
-		OnCommand=function(self) self:vertalign(not reverse and top or bottom):y(not reverse and -5 or 5):rotationz(180) end
+		OnCommand=function(self) self:zoomtowidth(56):vertalign(not reverse and top or bottom):y(not reverse and -5 or 5):rotationz(180) end
 	},
 	Def.Sprite {
 		Texture="_ReceptorGlow",
@@ -56,7 +57,7 @@ return Def.ActorFrame{
 		NoneCommand=function() end,
 		PressCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(brightness) end,
 		LiftCommand=function(self) self:blend('BlendMode_Add'):diffusealpha(0) end,
-		OnCommand=function(self) self:vertalign(not reverse and top or bottom):y(not reverse and -5 or 5):rotationz(180) end
+		OnCommand=function(self) self:zoomtowidth(56):vertalign(not reverse and top or bottom):y(not reverse and -5 or 5):rotationz(180) end
 	},
 	loadfile(NOTESKIN:GetPath("","_bomb"))()..{ InitCommand=function(self) self:draworder(9999) end }
 }

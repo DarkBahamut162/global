@@ -1,5 +1,6 @@
+local background = getenv("IIDXNoteBackgroundBrightness"..pname(Var "Player")) or 0
 local beam = getenv("IIDXBeam"..pname(Var "Player")) or "default"
-local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1.0
+local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1
 if beam == "random" then
 	local rng = GAMESTATE:GetStageSeed()
 	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush" }
@@ -17,9 +18,9 @@ local reverse = GAMESTATE:GetPlayerState(player):GetPlayerOptions('ModsLevel_Son
 if mods then reverse = not reverse end
 
 return Def.ActorFrame{
-	--Def.Quad { OnCommand=function(self) self:zoomto(50,9999):vertalign(reverse and bottom or top):diffuse(color("#808080")):diffusealpha(0.5) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(25):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):x(-25):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(50,9999):vertalign(reverse and bottom or top):diffuse(color("#808080")):diffusealpha(background) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(25):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-25):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,
@@ -28,7 +29,7 @@ return Def.ActorFrame{
 	},
 	Def.Sprite {
 		Texture="RED_LINE",
-		InitCommand=function(self) self:draworder(-9999):zoomtowidth(50) end
+		InitCommand=function(self) self:zoomtowidth(50) end
 	},
 	Def.Sprite {
 		Texture="beam/"..beam.."/"..length.."/".."Tap2",

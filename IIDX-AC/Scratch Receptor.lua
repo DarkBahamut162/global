@@ -3,8 +3,9 @@ local width = (num_columns == 6 or num_columns == 12) and (224+1.75*6) or (num_c
 local bg = (num_columns == 6 or num_columns == 12) and 6 or (num_columns == 7 or num_columns == 14) and 7 or 8
 local player = Var "Player"
 
+local background = getenv("IIDXNoteBackgroundBrightness"..pname(Var "Player")) or 0
 local beam = getenv("IIDXBeam"..pname(player)) or "default"
-local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1.0
+local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1
 if beam == "random" then
 	local rng = GAMESTATE:GetStageSeed()
 	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush" }
@@ -29,18 +30,18 @@ if not versionSplit then
 end
 
 return Def.ActorFrame{
-	--Def.Quad { OnCommand=function(self) self:zoomto(60,9999):vertalign(reverse and bottom or top):diffuse(color("#FF0000")):diffusealpha(0.5) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(60,9999):vertalign(reverse and bottom or top):diffuse(color("#FF0000")):diffusealpha(background) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(32):diffuse(color("#3B3B3B")) end },
+	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-32):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="base light",
 		Frame0000=0,
 		Delay0000=1,
 		InitCommand=function(self) self:zoom(reverse and 1 or -1):addx(((num_columns == 8 or num_columns == 16) and player == PLAYER_1) and 2 or not (num_columns == 8 or num_columns == 16) and -2 or 0):addy(reverse and -20 or 20):effectclock("beat"):zoomtowidth(60):blend('BlendMode_Add'):diffuseramp():effectcolor1(color("1,1,1,.2")):effectcolor2(color("1,1,1,1")) end
 	},
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(32):diffuse(color("#3B3B3B")) end },
-	Def.Quad { OnCommand=function(self) self:zoomto(2,9999):vertalign(reverse and bottom or top):x(-32):diffuse(color("#3B3B3B")) end },
 	Def.Sprite {
 		Texture="RED_LINE",
-		InitCommand=function(self) self:draworder(-9999):horizalign(((num_columns == 8 or num_columns == 16) and player == PLAYER_1) and left or right):x(((num_columns == 8 or num_columns == 16) and player == PLAYER_1) and -30.5 or (num_columns == 6 or num_columns == 12) and 30.5 or 32.5):zoomtowidth(width) end
+		InitCommand=function(self) self:zoomtowidth(60) end
 	},
 	Def.Sprite {
 		Texture="beam/"..beam.."/"..length.."/".."Tap3",
