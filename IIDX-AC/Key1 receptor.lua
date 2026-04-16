@@ -35,7 +35,6 @@ return Def.ActorFrame{
 		InitCommand=function(self) self:zoom(reverse and 1 or -1):addy(reverse and -20 or 20):effectclock("beat"):zoomtowidth(34):blend('BlendMode_Add'):diffuseramp():effectcolor1(color("1,1,1,.2")):effectcolor2(color("1,1,1,1")) end
 	},
 	Def.Sprite {
-		Condition=IsGame("po-mu") or IsGame("popn"),
 		Texture="RED_LINE",
 		InitCommand=function(self) self:zoomtowidth(36) end
 	},
