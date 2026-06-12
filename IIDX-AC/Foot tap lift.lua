@@ -2,7 +2,7 @@ local note = getenv("IIDXNote"..pname(Var "Player")) or "default"
 local brightness = tonumber(getenv("IIDXNoteBrightness"..pname(Var "Player"))) or 1.0
 if note == "random" then
 	local rng = GAMESTATE:GetStageSeed()
-	local notes = { "default", "gorgeous", "aqua", "gyaru", "photon", "pastel", "simplecolor", "light", "tricoro", "bubble" }
+	local notes = { "default", "gorgeous", "aqua", "gyaru", "photon", "pastel", "simplecolor", "light", "tricoro", "bubble", "fruity" }
 	note = notes[rng%(#notes)+1]
 end
 local length = getenv("IIDXNoteLength"..pname(Var "Player")) or "normal"

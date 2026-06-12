@@ -1,7 +1,7 @@
 local note = getenv("IIDXNote"..pname(Var "Player")) or "default"
 if note == "random" then
 	local rng = GAMESTATE:GetStageSeed()
-	local notes = { "default", "gorgeous", "aqua", "gyaru", "photon", "pastel", "simplecolor", "light", "tricoro", "bubble" }
+	local notes = { "default", "gorgeous", "aqua", "gyaru", "photon", "pastel", "simplecolor", "light", "tricoro", "bubble", "fruity" }
 	note = notes[rng%(#notes)+1]
 end
 

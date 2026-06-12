@@ -3,7 +3,7 @@ local beam = getenv("IIDXBeam"..pname(Var "Player")) or "default"
 local brightness = tonumber(getenv("IIDXBeamBrightness"..pname(Var "Player"))) or 1
 if beam == "random" then
 	local rng = GAMESTATE:GetStageSeed()
-	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush" }
+	local beams = { "none", "default", "orange", "pink", "monochrome", "onlyonebeam", "copula", "cannonballers", "heroicverse", "bistrover", "fresnelbeam", "resident", "epolis", "pinkycrush", "_sparkleshower" }
 	beam = beams[rng%(#beams)+1]
 end
 local length = getenv("IIDXBeamLength"..pname(Var "Player")) or "normal"
