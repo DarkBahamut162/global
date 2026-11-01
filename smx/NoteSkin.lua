@@ -1,5 +1,4 @@
 local USWN = ... or {}
-local Reverse = string.find(GAMESTATE:GetPlayerState(Var "Player"):GetPlayerOptionsString("ModsLevel_Preferred"), "Reverse");
 
 USWN.ButtonRedir = {
 	-- cardinal directions
@@ -67,6 +66,7 @@ USWN.Load = function()
 	if USWN.PartsToRotate[sElement] then t.BaseRotationZ = USWN.Rotate[sButton] or nil end
 	if sElement == "Explosion" then t.BaseRotationZ = nil end
     if sElement == "Receptor" then
+	local Reverse = string.find(GAMESTATE:GetPlayerState(Var "Player"):GetPlayerOptionsString("ModsLevel_Preferred"), "Reverse");
         t[#t+1] = Def.Sprite{
             Texture="_underglow",
             InitCommand=function(self) 
@@ -80,7 +80,6 @@ USWN.Load = function()
             LiftCommand=function(self) self:stoptweening():decelerate(0.2):diffusealpha(0):zoomx(0.75) end
         }
     end
-
 	return t
 end
 
